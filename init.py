@@ -5,6 +5,7 @@ import os.path
 import subprocess
 from requests import session
 from bs4 import BeautifulSoup
+import pendulum
 
 year = 2022
 day = int(sys.argv[1])
@@ -27,7 +28,7 @@ for code in soup.find_all("code"):
 
 r = s.get(f"https://adventofcode.com/{year}/day/{day}/input")
 
-open(os.path.join(dir, "input.txt"), "w").write(r.text.strip())
+open(os.path.join(dir, "input.txt"), "w").write(r.text)
 
 src = f'''#!/usr/bin/env python3
 
@@ -53,3 +54,5 @@ runpy = os.path.join(dir, "run.py")
 open(runpy, "w").write(src)
 
 subprocess.run(["chmod", "+x", runpy])
+
+open(os.path.join(dir, ".start"), "w").write(pendulum.now().to_iso8601_string())
