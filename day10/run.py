@@ -177,7 +177,7 @@ def check():
 
     for p in (x - 1, x, x + 1):
         if p == pos:
-            screen[row][p] = "#"
+            screen[row][p] = "🎄"
 
 
 for row in src:
