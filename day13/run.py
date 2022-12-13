@@ -92,32 +92,17 @@ def part1():
     print("part1", sum(is_true))
 
 
-def flatten(row, depth: int = 1) -> str:
-    if len(row) == 0:
-        return depth * "0"
-
-    s = ""
-    for x in row:
-        if isinstance(x, int):
-            s += str(x)
-        else:
-            s += flatten(x, depth + 1)
-
-    return s
-
-
-def cmp(l: t.List[t.Any], r: t.List[t.Any]) -> int:
-    c = check(l, r)
-    if c == Action.Nope:
-        return 1
-    if c == Action.Yep:
-        return -1
-    assert False, "crap"
-
-
 def part2():
     src.append([[2]])
     src.append([[6]])
+
+    def cmp(l: t.List[t.Any], r: t.List[t.Any]) -> int:
+        c = check(l, r)
+        if c == Action.Nope:
+            return 1
+        if c == Action.Yep:
+            return -1
+        assert False, "crap"
 
     list.sort(src, key=cmp_to_key(cmp))
 
